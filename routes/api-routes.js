@@ -13,10 +13,8 @@ module.exports = function (app) {
       });
   });
 
+  //route to create new workouts
   app.post("/api/workouts", (req, res) => {
-    //const { body } = req;
-    //const newExercise = new Workout(body);
-    console.log("post!!!!!" + req);
     db.Workout.create({})
       .then((dbWorkout) => {
         console.log(dbWorkout);
@@ -27,10 +25,8 @@ module.exports = function (app) {
       });
   });
 
+  //routes to update a workout
   app.put("/api/workouts/:id", (req, res) => {
-    //const { body } = req;
-    //const newExercise = new Workout(body);
-    console.log("put!!!!!" + req);
     db.Workout.findByIdAndUpdate(
       req.params.id,
       { $push: { exercises: req.body } },
@@ -41,7 +37,18 @@ module.exports = function (app) {
         res.json(dbWorkout);
       })
       .catch((err) => {
-        res.json(err);
+        res.status(400).json(err);
+      });
+  });
+
+  //gets the stats page
+  app.get("/api/workouts/range", (req, res) => {
+    db.Workout.find({})
+      .then((dbWorkout) => {
+        res.send(dbWorkout);
+      })
+      .catch((err) => {
+        res.status(400).json(err);
       });
   });
 };

@@ -1,14 +1,11 @@
 const mongoose = require("mongoose");
-//const Resistance = require("./Resistance"),
-//const Cardio =  require("./Cardio"),
 
 const Schema = mongoose.Schema;
 
 const WorkoutSchema = new Schema({
-  // CODE HERE
   date: {
     type: Date,
-    default: Date.now(),
+    default: Date.now,
   },
 
   exercises: [
