@@ -6,7 +6,7 @@ module.exports = function (app) {
   app.get("/api/workouts", (req, res) => {
     db.Workout.find({})
       .then((dbWorkout) => {
-        res.send(dbWorkout);
+        res.json(dbWorkout.map((w) => w.toObject({ virtuals: true })));
       })
       .catch((err) => {
         res.status(400).json(err);
