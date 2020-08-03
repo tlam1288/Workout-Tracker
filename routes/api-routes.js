@@ -1,5 +1,4 @@
 const db = require("../models");
-//const Workout = require("../models/Workout");
 
 module.exports = function (app) {
   // route to view all workouts
